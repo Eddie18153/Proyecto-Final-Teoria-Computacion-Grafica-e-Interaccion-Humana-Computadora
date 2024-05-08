@@ -503,54 +503,54 @@ int main() {
 
 	// Modelos Centro Comercial
 
-/*	Model centroComercial1("resources/objects/Centro Comercial Lab/paredes.obj");
-	Model centroComercial2("resources/objects/Centro Comercial Lab/pasto.obj");
-	Model centroComercial3("resources/objects/Centro Comercial Lab/piso1.obj");
-	Model centroComercial4("resources/objects/Centro Comercial Lab/piso2.obj");
-	Model centroComercial5("resources/objects/Centro Comercial Lab/barandales.obj");
-	Model centroComercial6("resources/objects/Centro Comercial Lab/escaleras.obj");
-	Model centroComercial7("resources/objects/Centro Comercial Lab/puertas_tapetes.obj");
-	Model centroComercial8("resources/objects/Centro Comercial Lab/fachadas_tiendas.obj");
-	Model centroComercial9("resources/objects/Centro Comercial Lab/bote_basura1.obj");
+	Model centroComercial1("resources/objects/Centro Comercial/paredes.obj");
+	Model centroComercial2("resources/objects/Centro Comercial/pasto.obj");
+	Model centroComercial3("resources/objects/Centro Comercial/piso1.obj");
+	Model centroComercial4("resources/objects/Centro Comercial/piso2.obj");
+	Model centroComercial5("resources/objects/Centro Comercial/barandales.obj");
+	Model centroComercial6("resources/objects/Centro Comercial/escaleras.obj");
+	Model centroComercial7("resources/objects/Centro Comercial/puertas_tapetes.obj");
+	Model centroComercial8("resources/objects/Centro Comercial/fachadas_tiendas.obj");
+	Model centroComercial9("resources/objects/Centro Comercial/bote_basura1.obj");
 	Model centroComercial10("resources/objects/Tienda de mascotas/animales.obj");
 	Model centroComercial11("resources/objects/Centro Comercial Lab/gas.obj");
 	Model centroComercial12("resources/objects/Tienda de mascotas/tiendamascotas.obj");
 
-	Model centroComercial13("resources/objects/Tienda Ropa Lab S/armario.obj");
-	Model centroComercial14("resources/objects/Tienda Ropa Lab S/carrito1.obj");
-	Model centroComercial15("resources/objects/Tienda Ropa Lab S/carrito2.obj");
-	Model centroComercial16("resources/objects/Tienda Ropa Lab S/carrito3.obj");
-	Model centroComercial17("resources/objects/Tienda Ropa Lab S/cuadro1.obj");
-	Model centroComercial18("resources/objects/Tienda Ropa Lab S/cuadro2.obj");
-	Model centroComercial19("resources/objects/Tienda Ropa Lab S/cuadro3.obj");
-	Model centroComercial20("resources/objects/Tienda Ropa Lab S/escritorio.obj");
-	Model centroComercial21("resources/objects/Tienda Ropa Lab S/espejos.obj");
-	Model centroComercial22("resources/objects/Tienda Ropa Lab S/maniqui1.obj");
-	Model centroComercial23("resources/objects/Tienda Ropa Lab S/maniqui2.obj");
-	Model centroComercial24("resources/objects/Tienda Ropa Lab S/maniqui3.obj");
-	Model centroComercial25("resources/objects/Tienda Ropa Lab S/maniqui4.obj");
-	Model centroComercial26("resources/objects/Tienda Ropa Lab S/paredes.obj");
-	Model centroComercial27("resources/objects/Tienda Ropa Lab S/piso.obj");
-	Model centroComercial28("resources/objects/Tienda Ropa Lab S/puerta.obj");
-	Model centroComercial29("resources/objects/Tienda Ropa Lab S/sala.obj");
-	Model centroComercial30("resources/objects/Tienda Ropa Lab S/sillones.obj");
-	Model centroComercial31("resources/objects/Tienda Ropa Lab S/ventanas.obj");
-	Model centroComercial32("resources/objects/Tienda Ropa Lab S/vestidor.obj");
-	Model centroComercial33("resources/objects/Centro Comercial Lab/fachadas1.obj");
-	Model centroComercial34("resources/objects/Centro Comercial Lab/fachadas2_2.obj");
-	Model centroComercial35("resources/objects/Centro Comercial Lab/bote_basura2.obj");
-	Model centroComercial36("resources/objects/Centro Comercial Lab/fachadas4.obj");
-	Model centroComercial37("resources/objects/Centro Comercial Lab/columna.obj");
-	Model centroComercial38("resources/objects/Centro Comercial Lab/fachada7.obj");
-	Model centroComercial39("resources/objects/Centro Comercial Lab/fachada8.obj");
-	Model centroComercial40("resources/objects/Centro Comercial Lab/banca1.obj");
-	Model centroComercial41("resources/objects/Centro Comercial Lab/banca2.obj");
-	Model centroComercial42("resources/objects/Centro Comercial Lab/banca3.obj");
-	Model centroComercial43("resources/objects/Centro Comercial Lab/banca4.obj");
-	Model centroComercial44("resources/objects/Centro Comercial Lab/banca5.obj");
-	Model centroComercial45("resources/objects/Centro Comercial Lab/banca6.obj");
-	Model centroComercial46("resources/objects/Centro Comercial Lab/banca7.obj");
-	Model centroComercial47("resources/objects/Centro Comercial Lab/banos2.obj");
+	Model centroComercial13("resources/objects/Tienda Ropa/armario.obj");
+	Model centroComercial14("resources/objects/Tienda Ropa/carrito1.obj");
+	Model centroComercial15("resources/objects/Tienda Ropa/carrito2.obj");
+	Model centroComercial16("resources/objects/Tienda Ropa/carrito3.obj");
+	Model centroComercial17("resources/objects/Tienda Ropa/cuadro1.obj");
+	Model centroComercial18("resources/objects/Tienda Ropa/cuadro2.obj");
+	Model centroComercial19("resources/objects/Tienda Ropa/cuadro3.obj");
+	Model centroComercial20("resources/objects/Tienda Ropa/escritorio.obj");
+	Model centroComercial21("resources/objects/Tienda Ropa/espejos.obj");
+	Model centroComercial22("resources/objects/Tienda Ropa/maniqui1.obj");
+	Model centroComercial23("resources/objects/Tienda Ropa/maniqui2.obj");
+	Model centroComercial24("resources/objects/Tienda Ropa/maniqui3.obj");
+	Model centroComercial25("resources/objects/Tienda Ropa/maniqui4.obj");
+	Model centroComercial26("resources/objects/Tienda Ropa/paredes.obj");
+	Model centroComercial27("resources/objects/Tienda Ropa/piso.obj");
+	Model centroComercial28("resources/objects/Tienda Ropa/puerta.obj");
+	Model centroComercial29("resources/objects/Tienda Ropa/sala.obj");
+	Model centroComercial30("resources/objects/Tienda Ropa/sillones.obj");
+	Model centroComercial31("resources/objects/Tienda Ropa/ventanas.obj");
+	Model centroComercial32("resources/objects/Tienda Ropa/vestidor.obj");
+	Model centroComercial33("resources/objects/Centro Comercial/fachadas1.obj");
+	Model centroComercial34("resources/objects/Centro Comercial/fachadas2_2.obj");
+	Model centroComercial35("resources/objects/Centro Comercial/bote_basura2.obj");
+	Model centroComercial36("resources/objects/Centro Comercial/fachadas4.obj");
+	Model centroComercial37("resources/objects/Centro Comercial/columna.obj");
+	Model centroComercial38("resources/objects/Centro Comercial/fachada7.obj");
+	Model centroComercial39("resources/objects/Centro Comercial/fachada8.obj");
+	Model centroComercial40("resources/objects/Centro Comercial/banca1.obj");
+	Model centroComercial41("resources/objects/Centro Comercial/banca2.obj");
+	Model centroComercial42("resources/objects/Centro Comercial/banca3.obj");
+	Model centroComercial43("resources/objects/Centro Comercial/banca4.obj");
+	Model centroComercial44("resources/objects/Centro Comercial/banca5.obj");
+	Model centroComercial45("resources/objects/Centro Comercial/banca6.obj");
+	Model centroComercial46("resources/objects/Centro Comercial/banca7.obj");
+	Model centroComercial47("resources/objects/Centro Comercial/banos2.obj");
 	Model centroComercial48("resources/objects/Tienda de juguetes/anaquelesjuguetes.obj");
 	Model centroComercial49("resources/objects/Tienda de juguetes/juguetes.obj");
 	Model centroComercial50("resources/objects/Tienda de juguetes/puerta.obj");
@@ -560,7 +560,7 @@ int main() {
 	Model centroComercial54("resources/objects/Banco/atm.obj");
 	Model centroComercial55("resources/objects/carrosplaza/carrosplaza.obj");
 	Model centroComercial56("resources/objects/carrosplaza/carrosplaza.obj");
-	Model centroComercial57("resources/objects/calle/calle/calle.obj");*/
+	Model centroComercial57("resources/objects/calle/calle/calle.obj");
 	Model centroComercial58("resources/objects/calle/edificio1/edificio1.obj");
 	Model centroComercial59("resources/objects/fastfood/fastfood2.obj");
 	Model centroComercial60("resources/objects/calle/edificio3/edificio3.obj");
@@ -925,7 +925,7 @@ int main() {
 
 		/*********************************************** Modelos Centro Comercial *********************************************/
 		
-		/*modelOp = glm::translate(glm::mat4(1.0f), glm::vec3(-150.0f, 0.0f, 100.0f));
+		modelOp = glm::translate(glm::mat4(1.0f), glm::vec3(-150.0f, 0.0f, 100.0f));
 		modelOp = glm::scale(modelOp, glm::vec3(0.3f));
 		staticShader.setMat4("model", modelOp);
 		centroComercial1.Draw(staticShader);
@@ -1217,7 +1217,7 @@ int main() {
 		modelOp = glm::translate(glm::mat4(1.0f), glm::vec3(-150.0f, 0.0f, 100.0f));
 		modelOp = glm::scale(modelOp, glm::vec3(0.3f));
 		staticShader.setMat4("model", modelOp);
-		centroComercial57.Draw(staticShader);*/
+		centroComercial57.Draw(staticShader);
 
 
 		modelOp = glm::translate(glm::mat4(1.0f), glm::vec3(-150.0f, 0.0f, 100.0f));
