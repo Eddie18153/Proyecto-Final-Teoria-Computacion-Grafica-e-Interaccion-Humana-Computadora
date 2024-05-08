@@ -1,8 +1,8 @@
-﻿/*---------------------------------------------------------*/
-/* ---   Proyecto Final Laboratorio Computacion Grafica   --------------------------*/
-/*-----------------------------    2024-2   ----------------------------------------*/
-/*------ Alumnos: Garcia Leon Cesar Andre - Gomez Moctezuma Eddie Jovany ---------------*/
-/*------ Numeros Cuenta: 315193082                 417009993 ---------------*/
+﻿/*------------------------------------------------------------------*/
+/* ---   Proyecto Final Computacion Grafica e Interaccion Humana ---*/
+/*------------------------------ 2024-2  ---------------------------*/
+/*--------------------- Alumno: Gomez Moctezuma Eddie Jovany -------*/
+/*---------------------- Numero de Cuenta: 417009993 ---------------*/
 
 #include <Windows.h>
 
@@ -15,6 +15,7 @@
 #include <time.h>
 #define STB_IMAGE_IMPLEMENTATION
 #include <stb_image.h>					//Texture
+
 //Biblioteca de musica
 //#include <irrKlang.h>
 //using namespace irrklang;
@@ -431,7 +432,7 @@ int main() {
 	monitors = glfwGetPrimaryMonitor();
 	getResolution();
 
-	GLFWwindow* window = glfwCreateWindow(SCR_WIDTH, SCR_HEIGHT, "Proyecto Final Lab CG 2024-2", NULL, NULL);
+	GLFWwindow* window = glfwCreateWindow(SCR_WIDTH, SCR_HEIGHT, "Proyecto Final Computación Grafica e Interacción Humana Teoria 2024-2 Eddie Gómez", NULL, NULL);
 	if (window == NULL) {
 		std::cout << "Failed to create GLFW window" << std::endl;
 		glfwTerminate();
