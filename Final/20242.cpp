@@ -1,5 +1,5 @@
 ﻿/*------------------------------------------------------------------------------------------------*/
-/* -----------------   Proyecto Final Laboratorio Computacion Grafica   --------------------------*/
+/* -----------------   Proyecto Final Teoria Computacion Grafica e Interaccion Humano-Computadora   --------------------------*/
 /*---------------------------------------   2024-2   ---------------------------------------------*/
 /*---------------------- Alumno: Gomez Moctezuma Eddie Jovany ------------------------------------*/
 /*---------------------- Numero de  Cuenta: 417009993 --------------------------------------------*/
@@ -636,7 +636,7 @@ int main() {
 	monitors = glfwGetPrimaryMonitor();
 	getResolution();
 
-	GLFWwindow* window = glfwCreateWindow(SCR_WIDTH, SCR_HEIGHT, "Proyecto Final Teoria CGeIH 2024-2", NULL, NULL);
+	GLFWwindow* window = glfwCreateWindow(SCR_WIDTH, SCR_HEIGHT, "Proyecto Final Teoria CGeIHC 2024-2", NULL, NULL);
 	if (window == NULL) {
 		std::cout << "Failed to create GLFW window" << std::endl;
 		glfwTerminate();
@@ -742,7 +742,7 @@ int main() {
 	Model centroComercial45("resources/objects/Centro Comercial/banca6.obj");
 	Model centroComercial46("resources/objects/Centro Comercial/banca7.obj");
 	Model centroComercial47("resources/objects/Centro Comercial/banos2.obj");
-	/*Model centroComercial48("resources/objects/Tienda de juguetes/anaquelesjuguetes.obj");
+	Model centroComercial48("resources/objects/Tienda de juguetes/anaquelesjuguetes.obj");
 	Model centroComercial49("resources/objects/Tienda de juguetes/juguetes.obj");
 	Model centroComercial50("resources/objects/Tienda de juguetes/puerta.obj");
 	Model centroComercial51("resources/objects/Tienda de juguetes/tiendajuguetes.obj");
@@ -772,7 +772,7 @@ int main() {
 	Model centroComercial75("resources/objects/Centro Comercial/fuenteP.obj");
 	Model centroComercial76("resources/objects/Centro Comercial/techo.obj");
 	Model centroComercial77("resources/objects/people/people3.obj");
-	Model centroComercial78("resources/objects/locales2/banossegundopiso.obj");*/
+	Model centroComercial78("resources/objects/locales2/banossegundopiso.obj");
 
 
 	// ************************************************************************** CARRO *********************************************************
@@ -1183,7 +1183,7 @@ int main() {
 		modelOp = glm::scale(modelOp, glm::vec3(0.3f));
 		staticShader.setMat4("model", modelOp);
 		centroComercial47.Draw(staticShader);
-/*
+
 		modelOp = glm::translate(glm::mat4(1.0f), glm::vec3(-150.0f, 0.0f, 100.0f));
 		modelOp = glm::scale(modelOp, glm::vec3(0.3f));
 		staticShader.setMat4("model", modelOp);
@@ -1353,7 +1353,7 @@ int main() {
 		modelOp = glm::translate(glm::mat4(1.0f), glm::vec3(-150.0f, 0.0f, 100.0f));
 		modelOp = glm::scale(modelOp, glm::vec3(0.3f));
 		staticShader.setMat4("model", modelOp);
-		centroComercial78.Draw(staticShader);*/
+		centroComercial78.Draw(staticShader);
 
 		// -------------------------------------------------------------------------------------------------------------------------
 		// AUTO ESTACIONADO
