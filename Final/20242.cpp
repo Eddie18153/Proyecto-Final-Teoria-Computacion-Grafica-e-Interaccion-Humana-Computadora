@@ -1,8 +1,8 @@
-﻿/*------------------------------------------------------------------*/
-/* ---   Proyecto Final Computacion Grafica e Interaccion Humana ---*/
-/*------------------------------ 2024-2  ---------------------------*/
-/*--------------------- Alumno: Gomez Moctezuma Eddie Jovany -------*/
-/*---------------------- Numero de Cuenta: 417009993 ---------------*/
+﻿/*---------------------------------------------------------*/
+/* ---   Proyecto Final Laboratorio Computacion Grafica   --------------------------*/
+/*-----------------------------    2024-2   ----------------------------------------*/
+/*------ Alumnos: Garcia Leon Cesar Andre - Gomez Moctezuma Eddie Jovany ---------------*/
+/*------ Numeros Cuenta: 315193082                 417009993 ---------------*/
 
 #include <Windows.h>
 
@@ -15,10 +15,9 @@
 #include <time.h>
 #define STB_IMAGE_IMPLEMENTATION
 #include <stb_image.h>					//Texture
-
 //Biblioteca de musica
-//#include <irrKlang.h>
-//using namespace irrklang;
+#include <irrKlang.h>
+using namespace irrklang;
 
 #define SDL_MAIN_HANDLED
 #include <SDL3/SDL.h>
@@ -48,7 +47,7 @@ GLFWmonitor* monitors;
 GLuint VBO[3], VAO[3], EBO[3];
 
 //Camera
-Camera camera(glm::vec3(0.0f, 20.0f, 40.0f));//posicion inicial que tendra la camara 
+Camera camera(glm::vec3(0.0f, 150.0f, 200.0f));//posicion inicial que tendra la camara 
 float MovementSpeed = 0.1f;
 GLfloat lastX = SCR_WIDTH / 2.0f,
 		lastY = SCR_HEIGHT / 2.0f;
@@ -63,9 +62,9 @@ double	deltaTime = 0.0f,
 lastFrame = 0.0f;
 
 void getResolution(void);
-void myData(void);							// De la practica 4
-void LoadTextures(void);					// De la práctica 6
-unsigned int generateTextures(char*, bool, bool);	// De la práctica 6
+void myData(void);							
+void LoadTextures(void);					
+unsigned int generateTextures(char*, bool, bool);
 
 //For Keyboard
 float	movX = 0.0f,
@@ -74,16 +73,9 @@ movZ = -5.0f,
 rotX = 0.0f,
 rotbrazoizq = 3.0f;
 
-//Texture
-unsigned int	t_onepice,
-				t_smile,
-				t_toalla,
-				t_unam,
-				t_white,
-				t_ladrillos,
-				t_cubo;
 
-//Lighting
+
+//Lighting Carro Juguete
 glm::vec3 posMiLuz(0.0f, 0.0f, 0.0f);
 float myVariable = 0.0f;
 glm::vec3 lightPosition(0.0f, 4.0f, -10.0f);
@@ -93,11 +85,10 @@ glm::vec3 lightDirection(0.0f, -1.0f, -1.0f);
 glm::vec3 MiLuz(0.0f, 0.0f, 0.0f);
 float contador = 0.0f;
 
-//// Light
+// Light
 glm::vec3 lightColor = glm::vec3(0.7f);
 glm::vec3 diffuseColor = lightColor * glm::vec3(0.0f);
 glm::vec3 ambientColor = diffuseColor * glm::vec3(0.0f);
-
 
 
 // posiciones
@@ -109,6 +100,40 @@ recorrido1 = true,
 recorrido2 = false,
 recorrido3 = false,
 recorrido4 = false;
+
+//Auto B
+float	movAutoB_x = 0.0f;
+float	movAutoB_y = 0.0f;
+float	movAutoB_z = 0.0f;
+float   orientaAutoB = 0.0f;
+float   giroLlantaAutoB = 0.0f;
+float   PI = 3.1416f;
+int		recorridoAutoB = 0;
+int     finRecorrido = 0;
+
+//Auto Juguete
+float	movAutoJ_x = 0.0f;
+float	movAutoJ_y = 0.0f;
+float	movAutoJ_z = 0.0f;
+float   orientaAutoJ = 0.0f;
+float   giroLlantaAutoJ = 0.0f;
+int		recorridoAutoJ = 0;
+
+//Picachu
+float	movPicachu_x = 0.0f;
+float	movPicachu_y = 0.0f;
+float	movPicachu_z = 0.0f;
+float   orientaPicachu = 0.0f;
+float   giroCabezaPic = 0.0f;
+float   giroPicachuBD = 0.0f;
+float   giroPicachuBD2 = 0.0f;
+float   giroPicachuBI = 0.0f;
+float   giroPicachuPD = 0.0f;
+float   giroPicachuPI = 0.0f;
+float   giroColaPic = 0.0f;
+int		recorridoPicachu = 0;
+int     banderaPicachu = 0;
+
 
 
 //Keyframes (Manipulación y dibujo)
@@ -220,39 +245,13 @@ unsigned int generateTextures(const char* filename, bool alfa, bool isPrimitive)
 
 void LoadTextures()
 {
-	t_onepice = generateTextures("Texturas/onepice.jpg", 0, true);   /// canal alfa transparencia 
-	t_smile = generateTextures("Texturas/awesomeface.png", 1, true);
-	t_toalla = generateTextures("Texturas/toalla.tga", 0, true);
-	t_unam = generateTextures("Texturas/escudo_unam.jpg", 0, true);
-	t_cubo = generateTextures("Texturas/cubo.jpg", 0, true);
-	t_ladrillos = generateTextures("Texturas/bricks.jpg", 0, true);
-	//This must be the last
-	t_white = generateTextures("Texturas/white.jpg", 0, false);
+
 }
 
 
 
 void animate(void) 
 {
-	posMiLuz.x = 150.0f * cos(myVariable);
-	posMiLuz.z = 150.0f * sin(myVariable);
-
-	myVariable += 0.10f;
-
-	if (contador >= 0.0f && contador < 10.0f)
-		MiLuz = glm::vec3(1.0f, 0.0f, 0.0f);
-	if (contador >= 10.0f && contador < 20.0f)
-		MiLuz = glm::vec3(1.0f, 1.0f, 1.0f);
-	if (contador >= 20.0f && contador < 30.0f)
-		MiLuz = glm::vec3(0.0f, 1.0f, 0.0f);
-	if (contador >= 30.0f && contador < 40.0f)
-		MiLuz = glm::vec3(0.0f, 0.0f, 1.0f);
-	if (contador >= 40.0f && contador < 50.0f)
-		MiLuz = glm::vec3(1.0f, 1.0f, 0.0f);
-	if (contador >= 50.0f)
-		contador = 0.0f;
-	
-	contador += 0.05f;
 
 	if (play)
 	{
@@ -293,6 +292,211 @@ void animate(void)
 	{
 		movAuto_x += 3.0f;
 	}
+
+	//Auto B
+	if (recorridoAutoB == 1 && finRecorrido == 0) {
+		movAutoB_z -= 0.25f;
+		giroLlantaAutoB -= 1.0;
+		if (movAutoB_z <= -200.0f) {
+			recorridoAutoB = 2;
+		}
+	}
+
+	if (recorridoAutoB == 2) {
+		giroLlantaAutoB -= 1.0;
+		movAutoB_x -= 0.15f;
+		movAutoB_z += 0.05f;
+		orientaAutoB += 0.3f;
+		if (orientaAutoB >= 180.0f) {
+			recorridoAutoB = 3;
+		}
+	}
+
+	if (recorridoAutoB == 3) {
+		movAutoB_z -= 0.25f;
+		giroLlantaAutoB += 1.0;
+		if (movAutoB_z <= -480.0f) {
+			recorridoAutoB = 0; //Fin de la animación
+			finRecorrido = 1;
+		}
+	}
+
+	//Auto tienda de juguetes
+	// Variables para el movimiento en forma de 8
+	float radius = 4.5f; // Radio de la figura
+	float centerX = 0.0f; // Centro en el eje X
+	float centerY = 0.0f; // Centro en el eje Y
+	float angularSpeed = 1.0f; // Velocidad angular
+	float forwardSpeed = 2.0f; // Velocidad hacia adelante
+
+	if (recorridoAutoJ == 1) {
+		// Movimiento en forma de 8 con dirección hacia adelante
+		float angle = orientaAutoJ * PI / 180.0f; // Convertir ángulo a radianes
+		float forwardX = forwardSpeed * cos(angle); // Componente X del movimiento hacia adelante
+		float forwardZ = forwardSpeed * sin(angle); // Componente Z del movimiento hacia adelante
+
+		movAutoJ_x = centerX + radius * sin(2 * angle) + forwardX; // Ecuación paramétrica para el eje X
+		movAutoJ_z = centerY + radius * sin(angle) + forwardZ; // Ecuación paramétrica para el eje Z
+
+		posMiLuz.x = 145.0f;
+		posMiLuz.y = 19.45f;
+		posMiLuz.z = 42.0f;
+
+		posMiLuz.x += movAutoJ_x;
+		posMiLuz.z += movAutoJ_z;
+
+		orientaAutoJ -= angularSpeed;
+		if (orientaAutoJ <= 0.0f && orientaAutoJ > -180.0f)
+			MiLuz = glm::vec3(1.0f, 0.0f, 0.0f);
+		if (orientaAutoJ <= -180.0f)
+			MiLuz = glm::vec3(0.0f, 0.0f, 1.0f);
+
+		if (orientaAutoJ <= -360.0f) {
+			orientaAutoJ += 360.0f;
+			MiLuz = glm::vec3(0.0f, 0.0f, 0.0f);
+			recorridoAutoJ = 0; // Reiniciar la animación
+		}
+	}
+
+	// PICACHU
+	if (recorridoPicachu == 1) {
+		 giroPicachuBD -= 1.0f;
+		 if (giroPicachuBD <= -180.0f) {
+			 recorridoPicachu = 2;
+		 }
+	}
+
+	if (recorridoPicachu == 2) {
+		giroPicachuBD2 -= 1.0f;
+		if (giroPicachuBD2 <= -90.0f) {
+			recorridoPicachu = 3;
+		}
+	}
+
+	if (recorridoPicachu == 3) {
+		giroPicachuBD2 += 0.8f;
+		if (giroPicachuBD2 >= 0.0f) {
+			recorridoPicachu = 4;
+		}
+	}
+
+	if (recorridoPicachu == 4) {
+		movPicachu_x -= 0.2f;
+		if (banderaPicachu == 0) {
+			giroPicachuBD += 2.0f;
+			giroPicachuPI += 2.0f;
+			giroPicachuBI -= 2.0f;
+			giroPicachuPD -= 2.0f;
+			giroCabezaPic += 0.1f;
+			if (giroPicachuBD >= -90.0f) {
+				banderaPicachu = 1;
+			}
+		}
+		if (banderaPicachu == 1) {
+			giroPicachuBD -= 2.0f;
+			giroPicachuPI -= 2.0f;
+			giroPicachuBI += 2.0f;
+			giroPicachuPD += 2.0f;
+			giroCabezaPic -= 0.1f;
+			if (giroPicachuBD <= -180.0f) {
+				banderaPicachu = 0;
+			}
+		}
+		if (movPicachu_x <= -100.0f) {
+			recorridoPicachu = 5;
+		}
+	}
+	if (recorridoPicachu == 5) {
+			orientaPicachu -= 0.2f;
+			if (banderaPicachu == 0) {
+				giroPicachuBD += 2.0f;
+				giroPicachuPI += 2.0f;
+				giroPicachuBI -= 2.0f;
+				giroPicachuPD -= 2.0f;
+				giroCabezaPic += 0.1f;
+				giroColaPic += 0.2f;
+				if (giroPicachuBD >= -90.0f) {
+					banderaPicachu = 1;
+				}
+			}
+			if (banderaPicachu == 1) {
+				giroPicachuBD -= 2.0f;
+				giroPicachuPI -= 2.0f;
+				giroPicachuBI += 2.0f;
+				giroPicachuPD += 2.0f;
+				giroCabezaPic -= 0.1f;
+				giroColaPic -= 0.2f;
+				if (giroPicachuBD <= -180.0f) {
+					banderaPicachu = 0;
+				}
+			}
+			if (orientaPicachu <= -180.0f) {
+				recorridoPicachu = 6;
+			}
+	}
+
+	if (recorridoPicachu == 6) {
+		movPicachu_x += 0.2f;
+		if (banderaPicachu == 0) {
+			giroPicachuBD += 2.0f;
+			giroPicachuPI += 2.0f;
+			giroPicachuBI -= 2.0f;
+			giroPicachuPD -= 2.0f;
+			giroCabezaPic += 0.1f;
+			if (giroPicachuBD >= -90.0f) {
+				banderaPicachu = 1;
+			}
+		}
+		if (banderaPicachu == 1) {
+			giroPicachuBD -= 2.0f;
+			giroPicachuPI -= 2.0f;
+			giroPicachuBI += 2.0f;
+			giroPicachuPD += 2.0f;
+			giroCabezaPic -= 0.1f;
+			if (giroPicachuBD <= -180.0f) {
+				banderaPicachu = 0;
+			}
+		}
+		if (movPicachu_x >= 0.0f) {
+			recorridoPicachu = 7;
+		}
+	}
+
+	if (recorridoPicachu == 7) {
+			orientaPicachu += 0.2f;
+			if (banderaPicachu == 0) {
+				giroPicachuBD += 2.0f;
+				giroPicachuPI += 2.0f;
+				giroPicachuBI -= 2.0f;
+				giroPicachuPD -= 2.0f;
+				giroCabezaPic += 0.1f;
+				giroColaPic += 0.2f;
+				if (giroPicachuBD >= -90.0f) {
+					banderaPicachu = 1;
+				}
+			}
+			if (banderaPicachu == 1) {
+				giroPicachuBD -= 2.0f;
+				giroPicachuPI -= 2.0f;
+				giroPicachuBI += 2.0f;
+				giroPicachuPD += 2.0f;
+				giroCabezaPic -= 0.1f;
+				giroColaPic -= 0.2f;
+				if (giroPicachuBD <= -180.0f) {
+					banderaPicachu = 0;
+				}
+			}
+			if (orientaPicachu >= 0.0f) {
+				giroPicachuBD = 0.0f;
+				giroPicachuPI = 0.0f;
+				giroPicachuBI = 0.0f;
+				giroPicachuPD = 0.0f;
+				giroCabezaPic = 0.0f;
+				giroColaPic   = 0.0f;
+				recorridoPicachu = 0;
+			}
+	}
+
 }
 
 void getResolution() {
@@ -432,7 +636,7 @@ int main() {
 	monitors = glfwGetPrimaryMonitor();
 	getResolution();
 
-	GLFWwindow* window = glfwCreateWindow(SCR_WIDTH, SCR_HEIGHT, "Proyecto Final Computación Grafica e Interacción Humana Teoria 2024-2 Eddie Gómez", NULL, NULL);
+	GLFWwindow* window = glfwCreateWindow(SCR_WIDTH, SCR_HEIGHT, "Proyecto Final Lab CG 2024-2", NULL, NULL);
 	if (window == NULL) {
 		std::cout << "Failed to create GLFW window" << std::endl;
 		glfwTerminate();
@@ -489,69 +693,56 @@ int main() {
 	skyboxShader.use();
 	skyboxShader.setInt("skybox", 0);
 
-	// load models
-	// -----------
-	//Model piso("resources/objects/piso/piso.obj");
-	//Model carro("resources/objects/lambo/carroceria.obj");
-	//Model llanta("resources/objects/lambo/Wheel.obj");
-	//Model casaVieja("resources/objects/casa/OldHouse.obj");
-	//Model cubo("resources/objects/cubo/cube02.obj");
-	//Model casaDoll("resources/objects/casa/DollHouse.obj");
-	//Model CasaBrujas("resources/objects/Casita/CasaBrujas.obj");
-	//Model Parca("resources/objects/parca/parca.obj");
-	//Model Cubito("resources/objects/Cubito/cubito.obj");
-	//Model Arbol("resources/objects/arbol/arbol.obj");
-
+	
 	// Modelos Centro Comercial
 
-	Model centroComercial1("resources/objects/Centro Comercial/paredes.obj");
-	Model centroComercial2("resources/objects/Centro Comercial/pasto.obj");
-	Model centroComercial3("resources/objects/Centro Comercial/piso1.obj");
-	Model centroComercial4("resources/objects/Centro Comercial/piso2.obj");
-	Model centroComercial5("resources/objects/Centro Comercial/barandales.obj");
-	Model centroComercial6("resources/objects/Centro Comercial/escaleras.obj");
-	Model centroComercial7("resources/objects/Centro Comercial/puertas_tapetes.obj");
-	Model centroComercial8("resources/objects/Centro Comercial/fachadas_tiendas.obj");
-	Model centroComercial9("resources/objects/Centro Comercial/bote_basura1.obj");
+	Model centroComercial1("resources/objects/Centro Comercial Lab/paredes.obj");
+	Model centroComercial2("resources/objects/Centro Comercial Lab/pasto.obj");
+	Model centroComercial3("resources/objects/Centro Comercial Lab/piso1.obj");
+	Model centroComercial4("resources/objects/Centro Comercial Lab/piso2.obj");
+	Model centroComercial5("resources/objects/Centro Comercial Lab/barandales.obj");
+	Model centroComercial6("resources/objects/Centro Comercial Lab/escaleras.obj");
+	Model centroComercial7("resources/objects/Centro Comercial Lab/puertas_tapetes.obj");
+	Model centroComercial8("resources/objects/Centro Comercial Lab/fachadas_tiendas.obj");
+	Model centroComercial9("resources/objects/Centro Comercial Lab/bote_basura1.obj");
 	Model centroComercial10("resources/objects/Tienda de mascotas/animales.obj");
 	Model centroComercial11("resources/objects/Centro Comercial Lab/gas.obj");
 	Model centroComercial12("resources/objects/Tienda de mascotas/tiendamascotas.obj");
-
-	Model centroComercial13("resources/objects/Tienda Ropa/armario.obj");
-	Model centroComercial14("resources/objects/Tienda Ropa/carrito1.obj");
-	Model centroComercial15("resources/objects/Tienda Ropa/carrito2.obj");
-	Model centroComercial16("resources/objects/Tienda Ropa/carrito3.obj");
-	Model centroComercial17("resources/objects/Tienda Ropa/cuadro1.obj");
-	Model centroComercial18("resources/objects/Tienda Ropa/cuadro2.obj");
-	Model centroComercial19("resources/objects/Tienda Ropa/cuadro3.obj");
-	Model centroComercial20("resources/objects/Tienda Ropa/escritorio.obj");
-	Model centroComercial21("resources/objects/Tienda Ropa/espejos.obj");
-	Model centroComercial22("resources/objects/Tienda Ropa/maniqui1.obj");
-	Model centroComercial23("resources/objects/Tienda Ropa/maniqui2.obj");
-	Model centroComercial24("resources/objects/Tienda Ropa/maniqui3.obj");
-	Model centroComercial25("resources/objects/Tienda Ropa/maniqui4.obj");
-	Model centroComercial26("resources/objects/Tienda Ropa/paredes.obj");
-	Model centroComercial27("resources/objects/Tienda Ropa/piso.obj");
-	Model centroComercial28("resources/objects/Tienda Ropa/puerta.obj");
-	Model centroComercial29("resources/objects/Tienda Ropa/sala.obj");
-	Model centroComercial30("resources/objects/Tienda Ropa/sillones.obj");
-	Model centroComercial31("resources/objects/Tienda Ropa/ventanas.obj");
-	Model centroComercial32("resources/objects/Tienda Ropa/vestidor.obj");
-	Model centroComercial33("resources/objects/Centro Comercial/fachadas1.obj");
-	Model centroComercial34("resources/objects/Centro Comercial/fachadas2_2.obj");
-	Model centroComercial35("resources/objects/Centro Comercial/bote_basura2.obj");
-	Model centroComercial36("resources/objects/Centro Comercial/fachadas4.obj");
-	Model centroComercial37("resources/objects/Centro Comercial/columna.obj");
-	Model centroComercial38("resources/objects/Centro Comercial/fachada7.obj");
-	Model centroComercial39("resources/objects/Centro Comercial/fachada8.obj");
-	Model centroComercial40("resources/objects/Centro Comercial/banca1.obj");
-	Model centroComercial41("resources/objects/Centro Comercial/banca2.obj");
-	Model centroComercial42("resources/objects/Centro Comercial/banca3.obj");
-	Model centroComercial43("resources/objects/Centro Comercial/banca4.obj");
-	Model centroComercial44("resources/objects/Centro Comercial/banca5.obj");
-	Model centroComercial45("resources/objects/Centro Comercial/banca6.obj");
-	Model centroComercial46("resources/objects/Centro Comercial/banca7.obj");
-	Model centroComercial47("resources/objects/Centro Comercial/banos2.obj");
+	Model centroComercial13("resources/objects/Tienda Ropa Lab S/armario.obj");
+	Model centroComercial14("resources/objects/Tienda Ropa Lab S/carrito1.obj");
+	Model centroComercial15("resources/objects/Tienda Ropa Lab S/carrito2.obj");
+	Model centroComercial16("resources/objects/Tienda Ropa Lab S/carrito3.obj");
+	Model centroComercial17("resources/objects/Tienda Ropa Lab S/cuadro1.obj");
+	Model centroComercial18("resources/objects/Tienda Ropa Lab S/cuadro2.obj");
+	Model centroComercial19("resources/objects/Tienda Ropa Lab S/cuadro3.obj");
+	Model centroComercial20("resources/objects/Tienda Ropa Lab S/escritorio.obj");
+	Model centroComercial21("resources/objects/Tienda Ropa Lab S/espejos.obj");
+	Model centroComercial22("resources/objects/Tienda Ropa Lab S/maniqui1.obj");
+	Model centroComercial23("resources/objects/Tienda Ropa Lab S/maniqui2.obj");
+	Model centroComercial24("resources/objects/Tienda Ropa Lab S/maniqui3.obj");
+	Model centroComercial25("resources/objects/Tienda Ropa Lab S/maniqui4.obj");
+	Model centroComercial26("resources/objects/Tienda Ropa Lab S/paredes.obj");
+	Model centroComercial27("resources/objects/Tienda Ropa Lab S/piso.obj");
+	Model centroComercial28("resources/objects/Tienda Ropa Lab S/puerta.obj");
+	Model centroComercial29("resources/objects/Tienda Ropa Lab S/sala.obj");
+	Model centroComercial30("resources/objects/Tienda Ropa Lab S/sillones.obj");
+	Model centroComercial31("resources/objects/Tienda Ropa Lab S/ventanas.obj");
+	Model centroComercial32("resources/objects/Tienda Ropa Lab S/vestidor.obj");
+	Model centroComercial33("resources/objects/Centro Comercial Lab/fachadas1.obj");
+	Model centroComercial34("resources/objects/Centro Comercial Lab/fachadas2_2.obj");
+	Model centroComercial35("resources/objects/Centro Comercial Lab/bote_basura2.obj");
+	Model centroComercial36("resources/objects/Centro Comercial Lab/fachadas4.obj");
+	Model centroComercial37("resources/objects/Centro Comercial Lab/columna.obj");
+	Model centroComercial38("resources/objects/Centro Comercial Lab/fachada7.obj");
+	Model centroComercial39("resources/objects/Centro Comercial Lab/fachada8.obj");
+	Model centroComercial40("resources/objects/Centro Comercial Lab/banca1.obj");
+	Model centroComercial41("resources/objects/Centro Comercial Lab/banca2.obj");
+	Model centroComercial42("resources/objects/Centro Comercial Lab/banca3.obj");
+	Model centroComercial43("resources/objects/Centro Comercial Lab/banca4.obj");
+	Model centroComercial44("resources/objects/Centro Comercial Lab/banca5.obj");
+	Model centroComercial45("resources/objects/Centro Comercial Lab/banca6.obj");
+	Model centroComercial46("resources/objects/Centro Comercial Lab/banca7.obj");
+	Model centroComercial47("resources/objects/Centro Comercial Lab/banos2.obj");
 	Model centroComercial48("resources/objects/Tienda de juguetes/anaquelesjuguetes.obj");
 	Model centroComercial49("resources/objects/Tienda de juguetes/juguetes.obj");
 	Model centroComercial50("resources/objects/Tienda de juguetes/puerta.obj");
@@ -579,23 +770,40 @@ int main() {
 	Model centroComercial72("resources/objects/calle/calle/peatones.obj");
 	Model centroComercial73("resources/objects/people/people1.obj");
 	Model centroComercial74("resources/objects/people/people2.obj");
+	Model centroComercial75("resources/objects/Centro Comercial Lab/fuenteP.obj");
+	Model centroComercial76("resources/objects/Centro Comercial Lab/techo.obj");
+	Model centroComercial77("resources/objects/people/people3.obj");
+	Model centroComercial78("resources/objects/locales2/banossegundopiso.obj");
 
 
+	// ************************************************************************** CARRO *********************************************************
+	Model autoB("resources/objects/Centro Comercial Lab/autoB.obj");
+	Model llantaAdDer("resources/objects/Centro Comercial Lab/llantaDerAd.obj");
+	Model llantaAtDer("resources/objects/Centro Comercial Lab/llantaDerAtr.obj");
+	Model llantaAdIzq("resources/objects/Centro Comercial Lab/llantaIzqAd.obj");
+	Model llantaAtIzq("resources/objects/Centro Comercial Lab/llantaIzqAtr.obj");
 
+	// ************************************************************************** CARRO JUGUETE *********************************************************
+	Model autoJ("resources/objects/Centro Comercial Lab/autoJugueteC.obj");
+	Model llantaAdDerJ("resources/objects/Centro Comercial Lab/llantaAdDerCJ.obj");
+	Model llantaAtDerJ("resources/objects/Centro Comercial Lab/llantaAtDerCJ.obj");
+	Model llantaAdIzqJ("resources/objects/Centro Comercial Lab/llantaAdIzqCJ.obj");
+	Model llantaAtIzqJ("resources/objects/Centro Comercial Lab/llantaAtIzqCJ.obj");
 
+	// ************************************************************************** BOTARGA PICACHU *********************************************************
+	Model cuerpoPic("resources/objects/Centro Comercial Lab/cuerpoPicachu.obj");
+	Model cabezaPic("resources/objects/Centro Comercial Lab/cabezaPicachu.obj");
+	Model brazoDerPic("resources/objects/Centro Comercial Lab/brazoDerPicachu.obj");
+	Model brazoIzqPic("resources/objects/Centro Comercial Lab/brazoIzqPicachu.obj");
+	Model pataDerPic("resources/objects/Centro Comercial Lab/pataDerPicachu.obj");
+	Model pataIzqPic("resources/objects/Centro Comercial Lab/pataIzqPicachu.obj");
+	Model colaPic("resources/objects/Centro Comercial Lab/colaPicachu.obj");
 
-
-	//ModelAnim animacionPersonaje("resources/objects/Personaje1/Arm.dae");
-	//animacionPersonaje.initShaders(animShader.ID);
-
-	//ModelAnim elvis("resources/objects/Elvis/elvis.dae");
-	//elvis.initShaders(animShader.ID);
 
 	//configuracion del sonido
 	
-	//ISoundEngine* engine = createIrrKlangDevice();
-	//ISoundEngine* engine2 = createIrrKlangDevice();
-	//engine->play2D("media/centrocomercial.mp3", true);
+	ISoundEngine* engine = createIrrKlangDevice();
+	engine->play2D("media/centrocomercial.mp3", true);
 
 
 
@@ -667,13 +875,13 @@ int main() {
 		staticShader.setVec3("pointLight[2].position", posMiLuz);
 		//staticShader.setVec3("pointLight[2].ambient", glm::vec3(0.8f, 0.0f, 0.0f));
 		//staticShader.setVec3("pointLight[2].diffuse", glm::vec3(1.0f, 0.0f, 0.0f));
-		//staticShader.setVec3("pointLight[2].ambient", MiLuz);
-		//staticShader.setVec3("pointLight[2].diffuse", MiLuz);
-		staticShader.setVec3("pointLight[2].ambient", glm::vec3(0.0f, 0.0f, 0.0f));
-		staticShader.setVec3("pointLight[2].diffuse", glm::vec3(0.0f, 0.0f, 0.0f));
+		staticShader.setVec3("pointLight[2].ambient", MiLuz);
+		staticShader.setVec3("pointLight[2].diffuse", MiLuz);
+		//staticShader.setVec3("pointLight[2].ambient", glm::vec3(0.0f, 0.0f, 0.0f));
+		//staticShader.setVec3("pointLight[2].diffuse", glm::vec3(0.0f, 0.0f, 0.0f));
 		staticShader.setVec3("pointLight[2].specular", glm::vec3(0.0f, 0.0f, 0.0f));
-		staticShader.setFloat("pointLight[2].constant", 0.001f);
-		staticShader.setFloat("pointLight[2].linear", 0.009f);
+		staticShader.setFloat("pointLight[2].constant", 0.1f);
+		staticShader.setFloat("pointLight[2].linear", 0.9f);
 		staticShader.setFloat("pointLight[2].quadratic", 0.00032f);
 
 		staticShader.setVec3("spotLight[0].position", glm::vec3(camera.Position.x, camera.Position.y, camera.Position.z));
@@ -729,21 +937,6 @@ int main() {
 		animShader.setVec3("light.specular", 1.0f, 1.0f, 1.0f);
 		animShader.setVec3("light.direction", lightDirection);
 		animShader.setVec3("viewPos", camera.Position);
-/*
-		modelOp = glm::translate(glm::mat4(1.0f), glm::vec3(-40.3f, 1.75f, 0.3f)); // translate it down so it's at the center of the scene
-		modelOp = glm::scale(modelOp, glm::vec3(0.05f));	// it's a bit too big for our scene, so scale it down
-		modelOp = glm::rotate(modelOp, glm::radians(90.0f), glm::vec3(0.0f, 1.0f, 0.0f));
-		animShader.setMat4("model", modelOp);
-		animacionPersonaje.Draw(animShader);*/
-
-		// -------------------------------------------------------------------------------------------------------------------------
-		// Segundo Personaje Animacion
-		// -------------------------------------------------------------------------------------------------------------------------
-/*
-		modelOp = glm::translate(glm::mat4(1.0f), glm::vec3(10.0f, 0.0f, 15.0f)); // translate it down so it's at the center of the scene
-		modelOp = glm::scale(modelOp, glm::vec3(0.05f));	// it's a bit too big for our scene, so scale it down
-		animShader.setMat4("model", modelOp);
-		elvis.Draw(animShader);*/
 
 
 		// -------------------------------------------------------------------------------------------------------------------------
@@ -753,34 +946,9 @@ int main() {
 
 		//Tener Piso como referencia
 		glBindVertexArray(VAO[2]);
-		//Colocar código aquí
-		/*modelOp = glm::scale(glm::mat4(1.0f), glm::vec3(40.0f, 2.0f, 40.0f));
-		modelOp = glm::translate(modelOp, glm::vec3(0.0f, -1.0f, 0.0f));
-		modelOp = glm::rotate(modelOp, glm::radians(-90.0f), glm::vec3(1.0f, 0.0f, 0.0f));
-		myShader.setMat4("model", modelOp);
-		myShader.setVec3("aColor", 1.0f, 1.0f, 1.0f);
-		glBindTexture(GL_TEXTURE_2D, t_ladrillos);
-		glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);*/
 
 		glBindVertexArray(VAO[0]);
-		//Colocar código aquí
-		/*modelOp = glm::translate(glm::mat4(1.0f), glm::vec3(0.0f, 10.0f, 0.0f));
-		modelOp = glm::scale(modelOp, glm::vec3(5.0f, 5.0f, 1.0f));
-		myShader.setMat4("model", modelOp);
-		myShader.setVec3("aColor", 1.0f, 1.0f, 1.0f);
-		glBindTexture(GL_TEXTURE_2D, t_onepice);
-		//glDrawArrays(GL_TRIANGLES, 0, 36); //A lonely cube :(
-		glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);*/
 
-		/***   Segundo objeto  **/
-		
-		/*glBindVertexArray(VAO[1]);
-		modelOp = glm::translate(glm::mat4(1.0f), glm::vec3(3.0f, 10.0f, 10.0f));
-		myShader.setMat4("model", modelOp);
-		myShader.setVec3("aColor", 1.0f, 1.0f, 1.0f);
-		glBindTexture(GL_TEXTURE_2D, t_cubo);
-		//glDrawArrays(GL_TRIANGLES, 0, 36); //A lonely cube :(
-		//glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);*/
 		
 		glBindVertexArray(0);
 		// ------------------------------------------------------------------------------------------------------------------------
@@ -793,135 +961,6 @@ int main() {
 		staticShader.use();
 		staticShader.setMat4("projection", projectionOp);
 		staticShader.setMat4("view", viewOp);
-
-/*
-		modelOp = glm::translate(glm::mat4(1.0f), glm::vec3(-40.0f, 0.0f, 50.0f));
-		modelOp = glm::scale(modelOp, glm::vec3(3.5f));
-		staticShader.setMat4("model", modelOp);
-		//CasaBrujas.Draw(staticShader);
-
-
-
-		modelOp = glm::translate(glm::mat4(1.0f), glm::vec3(250.0f, 0.0f, -10.0f));
-		modelOp = glm::rotate(modelOp, glm::radians(-90.0f), glm::vec3(0.0f, 1.0f, 0.0f));
-		staticShader.setMat4("model", modelOp);
-		//casaDoll.Draw(staticShader);
-
-		modelOp = glm::translate(glm::mat4(1.0f), glm::vec3(0.0f, -1.75f, 0.0f));
-		modelOp = glm::scale(modelOp, glm::vec3(0.2f));
-		staticShader.setMat4("model", modelOp);
-		piso.Draw(staticShader);
-
-		modelOp = glm::translate(glm::mat4(1.0f), glm::vec3(0.0f, 0.0f, -70.0f));
-		modelOp = glm::scale(modelOp, glm::vec3(5.0f));
-		staticShader.setMat4("model", modelOp);
-		staticShader.setVec3("dirLight.specular", glm::vec3(0.0f, 0.0f, 0.0f));
-		//casaVieja.Draw(staticShader);
-
-		modelOp = glm::translate(glm::mat4(1.0f), glm::vec3(40.0f, 0.0f, 70.0f));
-		modelOp = glm::scale(modelOp, glm::vec3(0.5f));
-		staticShader.setMat4("model", modelOp);
-		staticShader.setVec3("dirLight.specular", glm::vec3(0.0f, 0.0f, 0.0f));
-		//Parca.Draw(staticShader);
-
-		modelOp = glm::translate(glm::mat4(1.0f), glm::vec3(100.0f, 0.0f, 70.0f));
-		modelOp = glm::scale(modelOp, glm::vec3(5.0f));
-		staticShader.setMat4("model", modelOp);
-		staticShader.setVec3("dirLight.specular", glm::vec3(0.0f, 0.0f, 0.0f));
-		//Arbol.Draw(staticShader);
-		
-
-		*/
-
-		// -------------------------------------------------------------------------------------------------------------------------
-		// Carro
-		// -------------------------------------------------------------------------------------------------------------------------
-		//modelOp = glm::rotate(glm::mat4(1.0f), glm::radians(90.0f), glm::vec3(0.0f, 1.0f, 0.0f));
-	/*	modelOp = glm::translate(glm::mat4(1.0f), glm::vec3(movAuto_x, -1.0f, movAuto_z - 15.0f));
-		tmp = modelOp = glm::rotate(modelOp, glm::radians(orienta), glm::vec3(0.0f, 1.0f, 0.0f));
-		modelOp = glm::scale(modelOp, glm::vec3(0.1f, 0.1f, 0.1f));
-		staticShader.setVec3("dirLight.specular", glm::vec3(0.6f, 0.6f, 0.6f));
-		staticShader.setMat4("model", modelOp);
-		carro.Draw(staticShader);
-
-		modelOp = glm::translate(tmp, glm::vec3(8.5f, 2.5f, 12.9f));
-		modelOp = glm::scale(modelOp, glm::vec3(0.1f, 0.1f, 0.1f));
-		staticShader.setMat4("model", modelOp);
-		llanta.Draw(staticShader);	//Izq delantera
-
-		modelOp = glm::translate(tmp, glm::vec3(-8.5f, 2.5f, 12.9f));
-		modelOp = glm::scale(modelOp, glm::vec3(0.1f, 0.1f, 0.1f));
-		modelOp = glm::rotate(modelOp, glm::radians(180.0f), glm::vec3(0.0f, 1.0f, 0.0f));
-		staticShader.setMat4("model", modelOp);
-		llanta.Draw(staticShader);	//Der delantera
-
-		modelOp = glm::translate(tmp, glm::vec3(-8.5f, 2.5f, -14.5f));
-		modelOp = glm::scale(modelOp, glm::vec3(0.1f, 0.1f, 0.1f));
-		modelOp = glm::rotate(modelOp, glm::radians(180.0f), glm::vec3(0.0f, 1.0f, 0.0f));
-		staticShader.setMat4("model", modelOp);
-		llanta.Draw(staticShader);	//Der trasera
-
-		modelOp = glm::translate(tmp, glm::vec3(8.5f, 2.5f, -14.5f));
-		modelOp = glm::scale(modelOp, glm::vec3(0.1f, 0.1f, 0.1f));
-		staticShader.setMat4("model", modelOp);
-		llanta.Draw(staticShader);	//Izq trase*/
-		// -------------------------------------------------------------------------------------------------------------------------
-		// Personaje
-		// -------------------------------------------------------------------------------------------------------------------------
-
-
-		
-		// -------------------------------------------------------------------------------------------------------------------------
-		// Just in case
-		// -------------------------------------------------------------------------------------------------------------------------
-		/*modelOp = glm::translate(glm::mat4(1.0f), glm::vec3(posX, posY, posZ));
-		tmp = modelOp = glm::rotate(modelOp, glm::radians(giroMonito), glm::vec3(0.0f, 1.0f, 0.0));
-		staticShader.setMat4("model", modelOp);
-		torso.Draw(staticShader);
-
-		//Pierna Der
-		modelOp = glm::translate(tmp, glm::vec3(-0.5f, 0.0f, -0.1f));
-		modelOp = glm::rotate(modelOp, glm::radians(0.0f), glm::vec3(0.0f, 1.0f, 0.0));
-		modelOp = glm::rotate(modelOp, glm::radians(-rotRodIzq), glm::vec3(1.0f, 0.0f, 0.0f));
-		staticShader.setMat4("model", modelOp);
-		piernaDer.Draw(staticShader);
-
-		//Pie Der
-		modelOp = glm::translate(modelOp, glm::vec3(0, -0.9f, -0.2f));
-		staticShader.setMat4("model", modelOp);
-		botaDer.Draw(staticShader);
-
-		//Pierna Izq
-		modelOp = glm::translate(tmp, glm::vec3(0.5f, 0.0f, -0.1f));
-		modelOp = glm::rotate(modelOp, glm::radians(0.0f), glm::vec3(0.0f, 1.0f, 0.0f));
-		staticShader.setMat4("model", modelOp);
-		piernaIzq.Draw(staticShader);
-
-		//Pie Iz
-		modelOp = glm::translate(modelOp, glm::vec3(0, -0.9f, -0.2f));
-		staticShader.setMat4("model", modelOp);
-		botaDer.Draw(staticShader);	//Izq trase
-
-		//Brazo derecho
-		modelOp = glm::translate(tmp, glm::vec3(0.0f, -1.0f, 0.0f));
-		modelOp = glm::translate(modelOp, glm::vec3(-0.75f, 2.5f, 0));
-		modelOp = glm::rotate(modelOp, glm::radians(0.0f), glm::vec3(0.0f, 1.0f, 0.0f));
-		staticShader.setMat4("model", modelOp);
-		brazoDer.Draw(staticShader);
-
-		//Brazo izquierdo
-		modelOp = glm::translate(tmp, glm::vec3(0.0f, -1.0f, 0.0f));
-		modelOp = glm::translate(modelOp, glm::vec3(0.75f, 2.5f, 0));
-		modelOp = glm::rotate(modelOp, glm::radians(0.0f), glm::vec3(1.0f, 0.0f, 0.0f));
-		staticShader.setMat4("model", modelOp);
-		brazoIzq.Draw(staticShader);
-
-		//Cabeza
-		modelOp = glm::translate(tmp, glm::vec3(0.0f, -1.0f, 0.0f));
-		modelOp = glm::rotate(modelOp, glm::radians(0.0f), glm::vec3(0.0f, 1.0f, 0.0));
-		modelOp = glm::translate(modelOp, glm::vec3(0.0f, 2.5f, 0));
-		staticShader.setMat4("model", modelOp);
-		cabeza.Draw(staticShader);*/
 		
 
 		/*********************************************** Modelos Centro Comercial *********************************************/
@@ -1312,9 +1351,143 @@ int main() {
 		staticShader.setMat4("model", modelOp);
 		centroComercial74.Draw(staticShader);
 
-		
+		modelOp = glm::translate(glm::mat4(1.0f), glm::vec3(-150.0f, 0.0f, 100.0f));
+		modelOp = glm::scale(modelOp, glm::vec3(0.3f));
+		staticShader.setMat4("model", modelOp);
+		centroComercial75.Draw(staticShader);
 
+		modelOp = glm::translate(glm::mat4(1.0f), glm::vec3(-150.0f, 0.0f, 100.0f));
+		modelOp = glm::scale(modelOp, glm::vec3(0.3f));
+		staticShader.setMat4("model", modelOp);
+		centroComercial76.Draw(staticShader);
+
+		modelOp = glm::translate(glm::mat4(1.0f), glm::vec3(-150.0f, 0.0f, 100.0f));
+		modelOp = glm::scale(modelOp, glm::vec3(0.3f));
+		staticShader.setMat4("model", modelOp);
+		centroComercial77.Draw(staticShader);
+
+		modelOp = glm::translate(glm::mat4(1.0f), glm::vec3(-150.0f, 0.0f, 100.0f));
+		modelOp = glm::scale(modelOp, glm::vec3(0.3f));
+		staticShader.setMat4("model", modelOp);
+		centroComercial78.Draw(staticShader);
+
+		// -------------------------------------------------------------------------------------------------------------------------
+		// AUTO ESTACIONADO
+		// -------------------------------------------------------------------------------------------------------------------------
+		glm::mat4 tempAutoB = glm::mat4(1.0f);
+
+		modelOp = glm::translate(glm::mat4(1.0f), glm::vec3(390.0f, 3.0f, 300.0f));
+		modelOp = glm::translate(modelOp, glm::vec3(movAutoB_x, movAutoB_y, movAutoB_z));
+		tempAutoB = modelOp = glm::rotate(modelOp, glm::radians(orientaAutoB), glm::vec3(0.0f, 1.0f, 0.0f));
+		staticShader.setMat4("model", modelOp);
+		autoB.Draw(staticShader);
+
+		modelOp = glm::translate(tempAutoB, glm::vec3(4.0f, -2.618f, -11.142f));
+		modelOp = glm::rotate(modelOp, glm::radians(giroLlantaAutoB), glm::vec3(1.0f, 0.0f, 0.0f));
+		////modelOp = glm::rotate(modelOp, glm::radians(rotBrazoIzq), glm::vec3(0.0, 1.0f, 0.0f));
+		staticShader.setMat4("model", modelOp);
+		llantaAdDer.Draw(staticShader);
+
+		modelOp = glm::translate(tempAutoB, glm::vec3(4.0f, -2.618f, 6.356f));
+		modelOp = glm::rotate(modelOp, glm::radians(giroLlantaAutoB), glm::vec3(1.0f, 0.0f, 0.0f));
+		////modelOp = glm::rotate(modelOp, glm::radians(rotBrazoIzq), glm::vec3(0.0, 1.0f, 0.0f));
+		staticShader.setMat4("model", modelOp);
+		llantaAtDer.Draw(staticShader);
+
+		modelOp = glm::translate(tempAutoB, glm::vec3(-4.2f, -2.618f, -11.142f));
+		modelOp = glm::rotate(modelOp, glm::radians(giroLlantaAutoB), glm::vec3(1.0f, 0.0f, 0.0f));
+		////modelOp = glm::rotate(modelOp, glm::radians(rotBrazoIzq), glm::vec3(0.0, 1.0f, 0.0f));
+		staticShader.setMat4("model", modelOp);
+		llantaAdIzq.Draw(staticShader);
+
+		modelOp = glm::translate(tempAutoB, glm::vec3(-4.2f, -2.618f, 6.356f));
+		modelOp = glm::rotate(modelOp, glm::radians(giroLlantaAutoB), glm::vec3(1.0f, 0.0f, 0.0f));
+		////modelOp = glm::rotate(modelOp, glm::radians(rotBrazoIzq), glm::vec3(0.0, 1.0f, 0.0f));
+		staticShader.setMat4("model", modelOp);
+		llantaAtIzq.Draw(staticShader);
+
+		// -------------------------------------------------------------------------------------------------------------------------
+		// AUTO JUGUETE
+		// -------------------------------------------------------------------------------------------------------------------------
+		glm::mat4 tempAutoJ = glm::mat4(1.0f);
+
+		modelOp = glm::translate(glm::mat4(1.0f), glm::vec3(167.0f, 19.6f, 35.0f));
+		modelOp = glm::translate(modelOp, glm::vec3(movAutoJ_x, movAutoJ_y, movAutoJ_z));
+		modelOp = glm::scale(modelOp, glm::vec3(0.15f));
+		tempAutoJ = modelOp = glm::rotate(modelOp, glm::radians(orientaAutoJ), glm::vec3(0.0f, 1.0f, 0.0f));
+		staticShader.setMat4("model", modelOp);
+		autoJ.Draw(staticShader);
+
+		modelOp = glm::translate(tempAutoJ, glm::vec3(3.935f, -1.69f, 1.428f));
+		modelOp = glm::rotate(modelOp, glm::radians(giroLlantaAutoJ), glm::vec3(1.0f, 0.0f, 0.0f));
+		////modelOp = glm::rotate(modelOp, glm::radians(rotBrazoIzq), glm::vec3(0.0, 1.0f, 0.0f));
+		staticShader.setMat4("model", modelOp);
+		llantaAdDerJ.Draw(staticShader);
+
+		modelOp = glm::translate(tempAutoJ, glm::vec3(3.935f, -1.69f, 17.518f));
+		modelOp = glm::rotate(modelOp, glm::radians(giroLlantaAutoJ), glm::vec3(1.0f, 0.0f, 0.0f));
+		////modelOp = glm::rotate(modelOp, glm::radians(rotBrazoIzq), glm::vec3(0.0, 1.0f, 0.0f));
+		staticShader.setMat4("model", modelOp);
+		llantaAtDerJ.Draw(staticShader);
+
+		modelOp = glm::translate(tempAutoJ, glm::vec3(-4.354f, -1.69f, 1.428f));
+		modelOp = glm::rotate(modelOp, glm::radians(giroLlantaAutoJ), glm::vec3(1.0f, 0.0f, 0.0f));
+		////modelOp = glm::rotate(modelOp, glm::radians(rotBrazoIzq), glm::vec3(0.0, 1.0f, 0.0f));
+		staticShader.setMat4("model", modelOp);
+		llantaAdIzqJ.Draw(staticShader);
+
+		modelOp = glm::translate(tempAutoJ, glm::vec3(-4.354f, -1.69f, 17.518f));
+		modelOp = glm::rotate(modelOp, glm::radians(giroLlantaAutoJ), glm::vec3(1.0f, 0.0f, 0.0f));
+		////modelOp = glm::rotate(modelOp, glm::radians(rotBrazoIzq), glm::vec3(0.0, 1.0f, 0.0f));
+		staticShader.setMat4("model", modelOp);
+		llantaAtIzqJ.Draw(staticShader);
 		
+		// -------------------------------------------------------------------------------------------------------------------------
+		// BOTARGA PICACHU
+		// -------------------------------------------------------------------------------------------------------------------------
+		glm::mat4 tempPicachu = glm::mat4(1.0f);
+
+		modelOp = glm::translate(glm::mat4(1.0f), glm::vec3(125.0f, 24.0f, 15.0f));
+		modelOp = glm::translate(modelOp, glm::vec3(movPicachu_x, movPicachu_y, movPicachu_z));
+		modelOp = glm::scale(modelOp, glm::vec3(2.7f));
+		modelOp = glm::rotate(modelOp, glm::radians(-90.0f), glm::vec3(0.0f, 1.0f, 0.0f));
+		tempPicachu = modelOp = glm::rotate(modelOp, glm::radians(orientaPicachu), glm::vec3(0.0f, 1.0f, 0.0f));
+		staticShader.setMat4("model", modelOp);
+		cuerpoPic.Draw(staticShader);
+
+		modelOp = glm::translate(tempPicachu, glm::vec3(0.0f, 1.538f, 0.646f));
+		modelOp = glm::rotate(modelOp, glm::radians(giroCabezaPic), glm::vec3(0.0f, 0.0f, 1.0f));
+		staticShader.setMat4("model", modelOp);
+		cabezaPic.Draw(staticShader);
+
+		modelOp = glm::translate(tempPicachu, glm::vec3(-0.856f, 0.77f, 0.638f));
+		modelOp = glm::rotate(modelOp, glm::radians(giroPicachuBD), glm::vec3(1.0f, 0.0f, 0.0f));
+		modelOp = glm::rotate(modelOp, glm::radians(giroPicachuBD2), glm::vec3(0.0f, 0.0f, 1.0f));
+		staticShader.setMat4("model", modelOp);
+		brazoDerPic.Draw(staticShader);
+
+		modelOp = glm::translate(tempPicachu, glm::vec3(0.895f, 0.77f, 0.638f));
+		modelOp = glm::rotate(modelOp, glm::radians(giroPicachuBI), glm::vec3(1.0f, 0.0f, 0.0f));
+		staticShader.setMat4("model", modelOp);
+		brazoIzqPic.Draw(staticShader);
+
+		modelOp = glm::translate(tempPicachu, glm::vec3(-0.706f, -1.471f, 0.0f));
+		modelOp = glm::rotate(modelOp, glm::radians(giroPicachuPD), glm::vec3(1.0f, 0.0f, 0.0f));
+		////modelOp = glm::rotate(modelOp, glm::radians(rotBrazoIzq), glm::vec3(0.0, 1.0f, 0.0f));
+		staticShader.setMat4("model", modelOp);
+		pataDerPic.Draw(staticShader);
+
+		modelOp = glm::translate(tempPicachu, glm::vec3(0.699f, -1.471f, 0.0f));
+		modelOp = glm::rotate(modelOp, glm::radians(giroPicachuPI), glm::vec3(1.0f, 0.0f, 0.0f));
+		////modelOp = glm::rotate(modelOp, glm::radians(rotBrazoIzq), glm::vec3(0.0, 1.0f, 0.0f));
+		staticShader.setMat4("model", modelOp);
+		pataIzqPic.Draw(staticShader);
+
+		modelOp = glm::translate(tempPicachu, glm::vec3(0.0f, -0.465f, -0.928f));
+		modelOp = glm::rotate(modelOp, glm::radians(giroColaPic), glm::vec3(0.0f, 0.0f, 1.0f));
+		////modelOp = glm::rotate(modelOp, glm::radians(rotBrazoIzq), glm::vec3(0.0, 1.0f, 0.0f));
+		staticShader.setMat4("model", modelOp);
+		colaPic.Draw(staticShader);
 
 
 
@@ -1396,6 +1569,18 @@ void my_input(GLFWwindow* window, int key, int scancode, int action, int mode)
 	//Car animation
 	if (key == GLFW_KEY_SPACE && action == GLFW_PRESS)
 		animacion ^= true;
+
+	//Animacion Carro B
+	if (glfwGetKey(window, GLFW_KEY_1) == GLFW_PRESS)
+		recorridoAutoB = 1;
+
+	//Animacion Carro Juguete
+	if (glfwGetKey(window, GLFW_KEY_2) == GLFW_PRESS)
+		recorridoAutoJ = 1;
+
+	//Animacion Picachu
+	if (glfwGetKey(window, GLFW_KEY_3) == GLFW_PRESS)
+		recorridoPicachu = 1;
 
 	//To play KeyFrame animation 
 	if (key == GLFW_KEY_P && action == GLFW_PRESS)

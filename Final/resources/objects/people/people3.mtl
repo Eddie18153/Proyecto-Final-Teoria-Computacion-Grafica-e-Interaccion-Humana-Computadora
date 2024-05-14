@@ -1,0 +1,34 @@
+# 3ds Max Wavefront OBJ Exporter v0.99 - (c)2007 guruware
+# File Created: 09.05.2024 18:27:51
+
+newmtl Humano_01Business_01
+	Kd 0.5880 0.5880 0.5880
+	Ks 0.9000 0.9000 0.9000
+	Tr 0.0000
+	d 1.0000
+	Tf 1.0000 1.0000 1.0000
+	Pr 0.9000
+	Pm 0.0000
+	Pc 0.0000
+	Pcr 0.0000
+	Ni 1.5000
+	Ke 0.0000 0.0000 0.0000
+	illum 2
+	map_Kd maps\Humano_01Business_01_Diffuse01.jpg
+	bump maps\Humano_01Business_01_Normal.jpg
+	map_bump maps\Humano_01Business_01_Normal.jpg
+
+newmtl Material_655
+	Kd 0.8000 0.8000 0.8000
+	Ks 0.8000 0.8000 0.8000
+	Tr 0.0000
+	d 1.0000
+	Tf 0.0000 0.0000 0.0000
+	Pr 0.5356
+	Pm 0.0000
+	Pc 0.0000
+	Pcr 0.0000
+	Ni 1.5200
+	Ke 0.0000 0.0000 0.0000
+	illum 2
+	map_Kd maps\rocks_bench_lamp_trashcan.png

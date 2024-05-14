@@ -1,5 +1,20 @@
 # 3ds Max Wavefront OBJ Exporter v0.99 - (c)2007 guruware
-# File Created: 03.05.2024 12:00:07
+# File Created: 09.05.2024 17:40:05
+
+newmtl 10230_Garage_Shelves_Metal_v1
+	Kd 0.5882 0.5882 0.5882
+	Ks 0.5580 0.5580 0.5580
+	Tr 0.0000
+	d 1.0000
+	Tf 1.0000 1.0000 1.0000
+	Pr 0.7500
+	Pm 0.0000
+	Pc 0.0000
+	Pcr 0.0000
+	Ni 1.5000
+	Ke 0.0000 0.0000 0.0000
+	illum 2
+	map_Kd maps\10230_Garage_Shelves_Metal_v1_Diffuse.jpg
 
 newmtl Material__25
 	Kd 0.5880 0.5880 0.5880
@@ -60,33 +75,3 @@ newmtl Material__28
 	Ke 0.0000 0.0000 0.0000
 	illum 2
 	map_Kd maps\D_NQ_NP_880994-MLM48962426749_012022-O.jpg
-
-newmtl Material__29
-	Kd 0.5880 0.5880 0.5880
-	Ks 0.9000 0.9000 0.9000
-	Tr 0.0000
-	d 1.0000
-	Tf 1.0000 1.0000 1.0000
-	Pr 0.9000
-	Pm 0.0000
-	Pc 0.0000
-	Pcr 0.0000
-	Ni 1.5000
-	Ke 0.0000 0.0000 0.0000
-	illum 2
-	map_Kd maps\Rocket_dif.jpg
-
-newmtl 10230_Garage_Shelves_Metal_v1
-	Kd 0.5882 0.5882 0.5882
-	Ks 0.5580 0.5580 0.5580
-	Tr 0.0000
-	d 1.0000
-	Tf 1.0000 1.0000 1.0000
-	Pr 0.7500
-	Pm 0.0000
-	Pc 0.0000
-	Pcr 0.0000
-	Ni 1.5000
-	Ke 0.0000 0.0000 0.0000
-	illum 2
-	map_Kd maps\10230_Garage_Shelves_Metal_v1_Diffuse.jpg
