@@ -1,13 +1,13 @@
-﻿/*---------------------------------------------------------*/
-/* ---   Proyecto Final Laboratorio Computacion Grafica   --------------------------*/
-/*-----------------------------    2024-2   ----------------------------------------*/
-/*------ Alumnos: Garcia Leon Cesar Andre - Gomez Moctezuma Eddie Jovany ---------------*/
-/*------ Numeros Cuenta: 315193082                 417009993 ---------------*/
+﻿/*------------------------------------------------------------------------------------------------*/
+/* -----------------   Proyecto Final Laboratorio Computacion Grafica   --------------------------*/
+/*---------------------------------------   2024-2   ---------------------------------------------*/
+/*---------------------- Alumno: Gomez Moctezuma Eddie Jovany ------------------------------------*/
+/*---------------------- Numero de  Cuenta: 417009993 --------------------------------------------*/
 
 #include <Windows.h>
 
 #include <glad/glad.h>
-#include <glfw3.h>						//main
+#include <glfw3.h>						//mainh
 #include <stdlib.h>		
 #include <glm/glm.hpp>					//camera y model
 #include <glm/gtc/matrix_transform.hpp>	//camera y model
