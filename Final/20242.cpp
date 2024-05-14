@@ -734,7 +734,7 @@ int main() {
 	Model centroComercial37("resources/objects/Centro Comercial/columna.obj");
 	Model centroComercial38("resources/objects/Centro Comercial/fachada7.obj");
 	Model centroComercial39("resources/objects/Centro Comercial/fachada8.obj");
-	Model centroComercial40("resources/objects/Centro Comercial/banca1.obj");
+	/*Model centroComercial40("resources/objects/Centro Comercial/banca1.obj");
 	Model centroComercial41("resources/objects/Centro Comercial/banca2.obj");
 	Model centroComercial42("resources/objects/Centro Comercial/banca3.obj");
 	Model centroComercial43("resources/objects/Centro Comercial/banca4.obj");
@@ -772,7 +772,7 @@ int main() {
 	Model centroComercial75("resources/objects/Centro Comercial/fuenteP.obj");
 	Model centroComercial76("resources/objects/Centro Comercial/techo.obj");
 	Model centroComercial77("resources/objects/people/people3.obj");
-	Model centroComercial78("resources/objects/locales2/banossegundopiso.obj");
+	Model centroComercial78("resources/objects/locales2/banossegundopiso.obj");*/
 
 
 	// ************************************************************************** CARRO *********************************************************
