@@ -50,7 +50,7 @@ GLuint VBO[3], VAO[3], EBO[3];
 Camera camera(glm::vec3(0.0f, 150.0f, 200.0f));//posicion inicial que tendra la camara 
 float MovementSpeed = 0.1f;
 GLfloat lastX = SCR_WIDTH / 2.0f,
-		lastY = SCR_HEIGHT / 2.0f;
+lastY = SCR_HEIGHT / 2.0f;
 bool firstMouse = true;
 
 
@@ -62,8 +62,8 @@ double	deltaTime = 0.0f,
 lastFrame = 0.0f;
 
 void getResolution(void);
-void myData(void);							
-void LoadTextures(void);					
+void myData(void);
+void LoadTextures(void);
 unsigned int generateTextures(char*, bool, bool);
 
 //For Keyboard
@@ -138,16 +138,16 @@ int     banderaPicachu = 0;
 
 //Keyframes (Manipulación y dibujo)
 float	posX = 0.0f,
-		posY = 0.0f,
-		posZ = 0.0f,
-		rotRodIzq = 0.0f,
-		giroMonito = 0.0f;
+posY = 0.0f,
+posZ = 0.0f,
+rotRodIzq = 0.0f,
+giroMonito = 0.0f;
 float	incX = 0.0f,
-		incY = 0.0f,
-		incZ = 0.0f,
-		rotRodIzqInc = 0.0f,
-		giroMonitoInc = 0.0f;
-		
+incY = 0.0f,
+incZ = 0.0f,
+rotRodIzqInc = 0.0f,
+giroMonitoInc = 0.0f;
+
 
 #define MAX_FRAMES 9
 int i_max_steps = 60;
@@ -217,8 +217,8 @@ unsigned int generateTextures(const char* filename, bool alfa, bool isPrimitive)
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
 	// load image, create texture and generate mipmaps
 	int width, height, nrChannels;
-	
-	if(isPrimitive)
+
+	if (isPrimitive)
 		stbi_set_flip_vertically_on_load(true); // tell stb_image.h to flip loaded texture's on the y-axis.
 	else
 		stbi_set_flip_vertically_on_load(false); // tell stb_image.h to flip loaded texture's on the y-axis.
@@ -250,7 +250,7 @@ void LoadTextures()
 
 
 
-void animate(void) 
+void animate(void)
 {
 
 	if (play)
@@ -275,7 +275,7 @@ void animate(void)
 		else
 		{
 			//Draw animation
-			
+
 			posX += incX;
 			posY += incY;
 			posZ += incZ;
@@ -360,10 +360,10 @@ void animate(void)
 
 	// PICACHU
 	if (recorridoPicachu == 1) {
-		 giroPicachuBD -= 1.0f;
-		 if (giroPicachuBD <= -180.0f) {
-			 recorridoPicachu = 2;
-		 }
+		giroPicachuBD -= 1.0f;
+		if (giroPicachuBD <= -180.0f) {
+			recorridoPicachu = 2;
+		}
 	}
 
 	if (recorridoPicachu == 2) {
@@ -407,32 +407,32 @@ void animate(void)
 		}
 	}
 	if (recorridoPicachu == 5) {
-			orientaPicachu -= 0.2f;
-			if (banderaPicachu == 0) {
-				giroPicachuBD += 2.0f;
-				giroPicachuPI += 2.0f;
-				giroPicachuBI -= 2.0f;
-				giroPicachuPD -= 2.0f;
-				giroCabezaPic += 0.1f;
-				giroColaPic += 0.2f;
-				if (giroPicachuBD >= -90.0f) {
-					banderaPicachu = 1;
-				}
+		orientaPicachu -= 0.2f;
+		if (banderaPicachu == 0) {
+			giroPicachuBD += 2.0f;
+			giroPicachuPI += 2.0f;
+			giroPicachuBI -= 2.0f;
+			giroPicachuPD -= 2.0f;
+			giroCabezaPic += 0.1f;
+			giroColaPic += 0.2f;
+			if (giroPicachuBD >= -90.0f) {
+				banderaPicachu = 1;
 			}
-			if (banderaPicachu == 1) {
-				giroPicachuBD -= 2.0f;
-				giroPicachuPI -= 2.0f;
-				giroPicachuBI += 2.0f;
-				giroPicachuPD += 2.0f;
-				giroCabezaPic -= 0.1f;
-				giroColaPic -= 0.2f;
-				if (giroPicachuBD <= -180.0f) {
-					banderaPicachu = 0;
-				}
+		}
+		if (banderaPicachu == 1) {
+			giroPicachuBD -= 2.0f;
+			giroPicachuPI -= 2.0f;
+			giroPicachuBI += 2.0f;
+			giroPicachuPD += 2.0f;
+			giroCabezaPic -= 0.1f;
+			giroColaPic -= 0.2f;
+			if (giroPicachuBD <= -180.0f) {
+				banderaPicachu = 0;
 			}
-			if (orientaPicachu <= -180.0f) {
-				recorridoPicachu = 6;
-			}
+		}
+		if (orientaPicachu <= -180.0f) {
+			recorridoPicachu = 6;
+		}
 	}
 
 	if (recorridoPicachu == 6) {
@@ -463,38 +463,38 @@ void animate(void)
 	}
 
 	if (recorridoPicachu == 7) {
-			orientaPicachu += 0.2f;
-			if (banderaPicachu == 0) {
-				giroPicachuBD += 2.0f;
-				giroPicachuPI += 2.0f;
-				giroPicachuBI -= 2.0f;
-				giroPicachuPD -= 2.0f;
-				giroCabezaPic += 0.1f;
-				giroColaPic += 0.2f;
-				if (giroPicachuBD >= -90.0f) {
-					banderaPicachu = 1;
-				}
+		orientaPicachu += 0.2f;
+		if (banderaPicachu == 0) {
+			giroPicachuBD += 2.0f;
+			giroPicachuPI += 2.0f;
+			giroPicachuBI -= 2.0f;
+			giroPicachuPD -= 2.0f;
+			giroCabezaPic += 0.1f;
+			giroColaPic += 0.2f;
+			if (giroPicachuBD >= -90.0f) {
+				banderaPicachu = 1;
 			}
-			if (banderaPicachu == 1) {
-				giroPicachuBD -= 2.0f;
-				giroPicachuPI -= 2.0f;
-				giroPicachuBI += 2.0f;
-				giroPicachuPD += 2.0f;
-				giroCabezaPic -= 0.1f;
-				giroColaPic -= 0.2f;
-				if (giroPicachuBD <= -180.0f) {
-					banderaPicachu = 0;
-				}
+		}
+		if (banderaPicachu == 1) {
+			giroPicachuBD -= 2.0f;
+			giroPicachuPI -= 2.0f;
+			giroPicachuBI += 2.0f;
+			giroPicachuPD += 2.0f;
+			giroCabezaPic -= 0.1f;
+			giroColaPic -= 0.2f;
+			if (giroPicachuBD <= -180.0f) {
+				banderaPicachu = 0;
 			}
-			if (orientaPicachu >= 0.0f) {
-				giroPicachuBD = 0.0f;
-				giroPicachuPI = 0.0f;
-				giroPicachuBI = 0.0f;
-				giroPicachuPD = 0.0f;
-				giroCabezaPic = 0.0f;
-				giroColaPic   = 0.0f;
-				recorridoPicachu = 0;
-			}
+		}
+		if (orientaPicachu >= 0.0f) {
+			giroPicachuBD = 0.0f;
+			giroPicachuPI = 0.0f;
+			giroPicachuBI = 0.0f;
+			giroPicachuPD = 0.0f;
+			giroCabezaPic = 0.0f;
+			giroColaPic = 0.0f;
+			recorridoPicachu = 0;
+		}
 	}
 
 }
@@ -668,7 +668,7 @@ int main() {
 	myData();
 	glEnable(GL_DEPTH_TEST);
 
-	
+
 
 	// build and compile shaders
 	// -------------------------
@@ -676,7 +676,7 @@ int main() {
 	Shader staticShader("Shaders/shader_Lights.vs", "Shaders/shader_Lights_mod.fs");	//To use with static models
 	Shader skyboxShader("Shaders/skybox.vs", "Shaders/skybox.fs");	//To use with skybox
 	Shader animShader("Shaders/anim.vs", "Shaders/anim.fs");	//To use with animated models 
-	
+
 	vector<std::string> faces{
 		"resources/skybox/right.png",
 		"resources/skybox/left.png",
@@ -693,7 +693,7 @@ int main() {
 	skyboxShader.use();
 	skyboxShader.setInt("skybox", 0);
 
-	
+
 	// Modelos Centro Comercial
 
 	Model centroComercial1("resources/objects/Centro Comercial Lab/paredes.obj");
@@ -801,7 +801,7 @@ int main() {
 
 
 	//configuracion del sonido
-	
+
 	ISoundEngine* engine = createIrrKlangDevice();
 	engine->play2D("media/centrocomercial.mp3", true);
 
@@ -906,7 +906,7 @@ int main() {
 		staticShader.setMat4("projection", projectionOp);
 		staticShader.setMat4("view", viewOp);
 
-		
+
 
 
 		//Setup shader for primitives
@@ -949,7 +949,7 @@ int main() {
 
 		glBindVertexArray(VAO[0]);
 
-		
+
 		glBindVertexArray(0);
 		// ------------------------------------------------------------------------------------------------------------------------
 		// Termina Escenario Primitivas
@@ -961,10 +961,10 @@ int main() {
 		staticShader.use();
 		staticShader.setMat4("projection", projectionOp);
 		staticShader.setMat4("view", viewOp);
-		
+
 
 		/*********************************************** Modelos Centro Comercial *********************************************/
-		
+
 		modelOp = glm::translate(glm::mat4(1.0f), glm::vec3(-150.0f, 0.0f, 100.0f));
 		modelOp = glm::scale(modelOp, glm::vec3(0.3f));
 		staticShader.setMat4("model", modelOp);
@@ -1216,7 +1216,7 @@ int main() {
 		modelOp = glm::scale(modelOp, glm::vec3(0.3f));
 		staticShader.setMat4("model", modelOp);
 		centroComercial50.Draw(staticShader);
-		
+
 
 		modelOp = glm::translate(glm::mat4(1.0f), glm::vec3(-150.0f, 0.0f, 100.0f));
 		modelOp = glm::scale(modelOp, glm::vec3(0.3f));
@@ -1264,8 +1264,8 @@ int main() {
 		modelOp = glm::scale(modelOp, glm::vec3(0.3f));
 		staticShader.setMat4("model", modelOp);
 		centroComercial58.Draw(staticShader);
-		
-	
+
+
 		modelOp = glm::translate(glm::mat4(1.0f), glm::vec3(-150.0f, 0.0f, 100.0f));
 		modelOp = glm::scale(modelOp, glm::vec3(0.3f));
 		staticShader.setMat4("model", modelOp);
@@ -1314,17 +1314,17 @@ int main() {
 		modelOp = glm::translate(glm::mat4(1.0f), glm::vec3(-150.0f, 0.0f, 100.0f));
 		modelOp = glm::scale(modelOp, glm::vec3(0.3f));
 		staticShader.setMat4("model", modelOp);
-		centroComercial67.Draw(staticShader); 
+		centroComercial67.Draw(staticShader);
 
 		modelOp = glm::translate(glm::mat4(1.0f), glm::vec3(-150.0f, 0.0f, 100.0f));
 		modelOp = glm::scale(modelOp, glm::vec3(0.3f));
 		staticShader.setMat4("model", modelOp);
 		centroComercial68.Draw(staticShader);
-	
+
 		modelOp = glm::translate(glm::mat4(1.0f), glm::vec3(-150.0f, 0.0f, 100.0f));
 		modelOp = glm::scale(modelOp, glm::vec3(0.3f));
 		staticShader.setMat4("model", modelOp);
-		centroComercial69.Draw(staticShader);	
+		centroComercial69.Draw(staticShader);
 
 		modelOp = glm::translate(glm::mat4(1.0f), glm::vec3(-150.0f, 0.0f, 100.0f));
 		modelOp = glm::scale(modelOp, glm::vec3(0.3f));
@@ -1441,7 +1441,7 @@ int main() {
 		////modelOp = glm::rotate(modelOp, glm::radians(rotBrazoIzq), glm::vec3(0.0, 1.0f, 0.0f));
 		staticShader.setMat4("model", modelOp);
 		llantaAtIzqJ.Draw(staticShader);
-		
+
 		// -------------------------------------------------------------------------------------------------------------------------
 		// BOTARGA PICACHU
 		// -------------------------------------------------------------------------------------------------------------------------
@@ -1504,7 +1504,7 @@ int main() {
 			SDL_Delay((int)(LOOP_TIME - deltaTime));
 		}
 
-		
+
 		// glfw: swap buffers and poll IO events (keys pressed/released, mouse moved etc.)
 		// -------------------------------------------------------------------------------
 		glfwSwapBuffers(window);
@@ -1524,7 +1524,7 @@ int main() {
 
 // process all input: query GLFW whether relevant keys are pressed/released this frame and react accordingly
 // ---------------------------------------------------------------------------------------------------------
-void my_input(GLFWwindow* window, int key, int scancode, int action, int mode) 
+void my_input(GLFWwindow* window, int key, int scancode, int action, int mode)
 {
 	if (glfwGetKey(window, GLFW_KEY_ESCAPE) == GLFW_PRESS)
 		glfwSetWindowShouldClose(window, true);
@@ -1558,13 +1558,13 @@ void my_input(GLFWwindow* window, int key, int scancode, int action, int mode)
 	if (glfwGetKey(window, GLFW_KEY_M) == GLFW_PRESS)
 		lightPosition.x++;
 	//if (glfwGetKey(window, GLFW_KEY_N) == GLFW_PRESS)
-		lightPosition.x--;
+	lightPosition.x--;
 
 
 	//if (glfwGetKey(window, GLFW_KEY_M) == GLFW_PRESS)
-		rotbrazoizq += +3.0;
+	rotbrazoizq += +3.0;
 	//if (glfwGetKey(window, GLFW_KEY_N) == GLFW_PRESS)
-		rotbrazoizq += -3.0;
+	rotbrazoizq += -3.0;
 
 	//Car animation
 	if (key == GLFW_KEY_SPACE && action == GLFW_PRESS)
@@ -1622,7 +1622,7 @@ void framebuffer_size_callback(GLFWwindow* window, int width, int height) {
 }
 
 // glfw: whenever the mouse moves, this callback is called
-void mouse_callback(GLFWwindow* window, double xpos, double ypos) 
+void mouse_callback(GLFWwindow* window, double xpos, double ypos)
 {
 	if (firstMouse)
 	{
