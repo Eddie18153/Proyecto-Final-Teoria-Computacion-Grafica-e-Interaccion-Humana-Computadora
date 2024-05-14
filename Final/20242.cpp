@@ -696,7 +696,7 @@ int main() {
 
 	// Modelos Centro Comercial
 
-/*	Model centroComercial1("resources/objects/Centro Comercial/paredes.obj");
+	Model centroComercial1("resources/objects/Centro Comercial/paredes.obj");
 	Model centroComercial2("resources/objects/Centro Comercial/pasto.obj");
 	Model centroComercial3("resources/objects/Centro Comercial/piso1.obj");
 	Model centroComercial4("resources/objects/Centro Comercial/piso2.obj");
@@ -709,15 +709,14 @@ int main() {
 	Model centroComercial11("resources/objects/Centro Comercial/gas.obj");
 	Model centroComercial12("resources/objects/Tienda de mascotas/tiendamascotas.obj");
 	Model centroComercial13("resources/objects/Tienda Ropa/armario.obj");
-	Model centroComercial14("resources/objects/Tienda Ropa/carrito1.obj");
-	Model centroComercial15("resources/objects/Tienda Ropa/carrito2.obj");
-	Model centroComercial16("resources/objects/Tienda Ropa/carrito3.obj");
+	Model centroComercial14("resources/objects/piso/piso.obj");
+	
 	Model centroComercial17("resources/objects/Tienda Ropa/cuadro1.obj");
 	Model centroComercial18("resources/objects/Tienda Ropa/cuadro2.obj");
 	Model centroComercial19("resources/objects/Tienda Ropa/cuadro3.obj");
 	Model centroComercial20("resources/objects/Tienda Ropa/escritorio.obj");
 	Model centroComercial21("resources/objects/Tienda Ropa/espejos.obj");
-	Model centroComercial22("resources/objects/Tienda Ropa/maniqui1.obj");
+	
 	Model centroComercial23("resources/objects/Tienda Ropa/maniqui2.obj");
 	Model centroComercial24("resources/objects/Tienda Ropa/maniqui3.obj");
 	Model centroComercial25("resources/objects/Tienda Ropa/maniqui4.obj");
@@ -742,8 +741,8 @@ int main() {
 	Model centroComercial44("resources/objects/Centro Comercial/banca5.obj");
 	Model centroComercial45("resources/objects/Centro Comercial/banca6.obj");
 	Model centroComercial46("resources/objects/Centro Comercial/banca7.obj");
-	Model centroComercial47("resources/objects/Centro Comercial/banos2.obj");*/
-	Model centroComercial48("resources/objects/Tienda de juguetes/anaquelesjuguetes.obj");
+	Model centroComercial47("resources/objects/Centro Comercial/banos2.obj");
+	/*Model centroComercial48("resources/objects/Tienda de juguetes/anaquelesjuguetes.obj");
 	Model centroComercial49("resources/objects/Tienda de juguetes/juguetes.obj");
 	Model centroComercial50("resources/objects/Tienda de juguetes/puerta.obj");
 	Model centroComercial51("resources/objects/Tienda de juguetes/tiendajuguetes.obj");
@@ -773,7 +772,7 @@ int main() {
 	Model centroComercial75("resources/objects/Centro Comercial/fuenteP.obj");
 	Model centroComercial76("resources/objects/Centro Comercial/techo.obj");
 	Model centroComercial77("resources/objects/people/people3.obj");
-	Model centroComercial78("resources/objects/locales2/banossegundopiso.obj");
+	Model centroComercial78("resources/objects/locales2/banossegundopiso.obj");*/
 
 
 	// ************************************************************************** CARRO *********************************************************
@@ -965,7 +964,7 @@ int main() {
 
 		/*********************************************** Modelos Centro Comercial *********************************************/
 
-	/*	modelOp = glm::translate(glm::mat4(1.0f), glm::vec3(-150.0f, 0.0f, 100.0f));
+		modelOp = glm::translate(glm::mat4(1.0f), glm::vec3(-150.0f, 0.0f, 100.0f));
 		modelOp = glm::scale(modelOp, glm::vec3(0.3f));
 		staticShader.setMat4("model", modelOp);
 		centroComercial1.Draw(staticShader);
@@ -1038,16 +1037,6 @@ int main() {
 		modelOp = glm::translate(glm::mat4(1.0f), glm::vec3(-150.0f, 0.0f, 100.0f));
 		modelOp = glm::scale(modelOp, glm::vec3(0.3f));
 		staticShader.setMat4("model", modelOp);
-		centroComercial15.Draw(staticShader);
-
-		modelOp = glm::translate(glm::mat4(1.0f), glm::vec3(-150.0f, 0.0f, 100.0f));
-		modelOp = glm::scale(modelOp, glm::vec3(0.3f));
-		staticShader.setMat4("model", modelOp);
-		centroComercial16.Draw(staticShader);
-
-		modelOp = glm::translate(glm::mat4(1.0f), glm::vec3(-150.0f, 0.0f, 100.0f));
-		modelOp = glm::scale(modelOp, glm::vec3(0.3f));
-		staticShader.setMat4("model", modelOp);
 		centroComercial17.Draw(staticShader);
 
 		modelOp = glm::translate(glm::mat4(1.0f), glm::vec3(-150.0f, 0.0f, 100.0f));
@@ -1069,11 +1058,6 @@ int main() {
 		modelOp = glm::scale(modelOp, glm::vec3(0.3f));
 		staticShader.setMat4("model", modelOp);
 		centroComercial21.Draw(staticShader);
-
-		modelOp = glm::translate(glm::mat4(1.0f), glm::vec3(-150.0f, 0.0f, 100.0f));
-		modelOp = glm::scale(modelOp, glm::vec3(0.3f));
-		staticShader.setMat4("model", modelOp);
-		centroComercial22.Draw(staticShader);
 
 		modelOp = glm::translate(glm::mat4(1.0f), glm::vec3(-150.0f, 0.0f, 100.0f));
 		modelOp = glm::scale(modelOp, glm::vec3(0.3f));
@@ -1198,8 +1182,8 @@ int main() {
 		modelOp = glm::translate(glm::mat4(1.0f), glm::vec3(-150.0f, 0.0f, 100.0f));
 		modelOp = glm::scale(modelOp, glm::vec3(0.3f));
 		staticShader.setMat4("model", modelOp);
-		centroComercial47.Draw(staticShader);*/
-
+		centroComercial47.Draw(staticShader);
+/*
 		modelOp = glm::translate(glm::mat4(1.0f), glm::vec3(-150.0f, 0.0f, 100.0f));
 		modelOp = glm::scale(modelOp, glm::vec3(0.3f));
 		staticShader.setMat4("model", modelOp);
@@ -1369,7 +1353,7 @@ int main() {
 		modelOp = glm::translate(glm::mat4(1.0f), glm::vec3(-150.0f, 0.0f, 100.0f));
 		modelOp = glm::scale(modelOp, glm::vec3(0.3f));
 		staticShader.setMat4("model", modelOp);
-		centroComercial78.Draw(staticShader);
+		centroComercial78.Draw(staticShader);*/
 
 		// -------------------------------------------------------------------------------------------------------------------------
 		// AUTO ESTACIONADO
@@ -1539,47 +1523,18 @@ void my_input(GLFWwindow* window, int key, int scancode, int action, int mode)
 		camera.ProcessKeyboard(RIGHT, (float)deltaTime);
 
 	//To Configure Model
-	if (glfwGetKey(window, GLFW_KEY_Y) == GLFW_PRESS)
-		posZ++;
-	if (glfwGetKey(window, GLFW_KEY_H) == GLFW_PRESS)
-		posZ--;
-	if (glfwGetKey(window, GLFW_KEY_G) == GLFW_PRESS)
-		posX--;
-	if (glfwGetKey(window, GLFW_KEY_J) == GLFW_PRESS)
-		posX++;
-	if (glfwGetKey(window, GLFW_KEY_X) == GLFW_PRESS)
-		rotRodIzq--;
-	if (glfwGetKey(window, GLFW_KEY_C) == GLFW_PRESS)
-		rotRodIzq++;
-	if (glfwGetKey(window, GLFW_KEY_V) == GLFW_PRESS)
-		giroMonito--;
-	if (glfwGetKey(window, GLFW_KEY_B) == GLFW_PRESS)
-		giroMonito++;
-	if (glfwGetKey(window, GLFW_KEY_M) == GLFW_PRESS)
-		lightPosition.x++;
-	//if (glfwGetKey(window, GLFW_KEY_N) == GLFW_PRESS)
-	lightPosition.x--;
 
-
-	//if (glfwGetKey(window, GLFW_KEY_M) == GLFW_PRESS)
-	rotbrazoizq += +3.0;
-	//if (glfwGetKey(window, GLFW_KEY_N) == GLFW_PRESS)
-	rotbrazoizq += -3.0;
-
-	//Car animation
-	if (key == GLFW_KEY_SPACE && action == GLFW_PRESS)
-		animacion ^= true;
 
 	//Animacion Carro B
-	if (glfwGetKey(window, GLFW_KEY_1) == GLFW_PRESS)
+	if (glfwGetKey(window, GLFW_KEY_B) == GLFW_PRESS)
 		recorridoAutoB = 1;
 
 	//Animacion Carro Juguete
-	if (glfwGetKey(window, GLFW_KEY_2) == GLFW_PRESS)
+	if (glfwGetKey(window, GLFW_KEY_N) == GLFW_PRESS)
 		recorridoAutoJ = 1;
 
 	//Animacion Picachu
-	if (glfwGetKey(window, GLFW_KEY_3) == GLFW_PRESS)
+	if (glfwGetKey(window, GLFW_KEY_M) == GLFW_PRESS)
 		recorridoPicachu = 1;
 
 	//To play KeyFrame animation 
