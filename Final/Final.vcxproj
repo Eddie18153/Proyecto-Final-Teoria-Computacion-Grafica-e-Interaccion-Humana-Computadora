@@ -24,7 +24,7 @@
     <ProjectGuid>{bccdb4b7-1c2d-4313-92d9-a66dbbe227a5}</ProjectGuid>
     <RootNamespace>Final</RootNamespace>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
-    <ProjectName>Proyecto Final Laboratorio CGeIH</ProjectName>
+    <ProjectName>Proyecto Final Teoria CGeIH</ProjectName>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
